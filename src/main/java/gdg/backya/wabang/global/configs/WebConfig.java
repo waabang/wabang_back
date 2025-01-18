@@ -7,20 +7,4 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-
-  @Override
-  public void addCorsMappings(CorsRegistry registry) {
-    registry.addMapping("/**")
-      .allowedOrigins("*")
-      .allowedMethods("GET", "POST", "PUT", "DELETE")
-      .allowedHeaders("*")
-      .allowCredentials(true)
-      .maxAge(3600);
-  }
-
-  // ban static resource request
-  @Override
-  public void addResourceHandlers(ResourceHandlerRegistry registry) {
-  }
-
 }

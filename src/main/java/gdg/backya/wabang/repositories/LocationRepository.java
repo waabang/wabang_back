@@ -5,11 +5,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 public interface LocationRepository extends JpaRepository<Location, Integer> {
 
-//  @Query(
-//      "select Location from Location l " + "where l.latitude = :latitude and l.longitude = :longitude"
-//  )
-  //Slice<Location> findWhereNearby(Float latitude, Float longitude, PageRequest pageRequest);
+  @Query(
+      value = "SELECT * FROM locations l "
+          + "WHERE ST_Distance_Sphere(Point(:longitude, :latitude), l.coordinate) < :distance",
+      nativeQuery = true
+  )
+  Slice<Location> findWhereNearby(@Param("latitude") float latitude, @Param("longitude") float longitude, @Param("distance") float distance, PageRequest pageRequest);
+
 }

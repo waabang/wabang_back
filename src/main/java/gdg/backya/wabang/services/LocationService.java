@@ -17,9 +17,13 @@ public class LocationService {
 
   private final LocationRepository locationRepository;
 
-  public BaseResponse<GetLocationsResponse> getLocationsNearby(Float latitude, Float longitude, Integer page, Integer size) {
+  public BaseResponse<List<GetLocationsResponse>> getLocationsNearby(Float latitude, Float longitude, Integer page, Integer size) {
     PageRequest pageRequest = PageRequest.of(page, size);
-    //locationRepository.findWhereNearby(latitude, longitude, pageRequest);
-    return BaseResponse.success("success", null);
+    List<Location> list= locationRepository.findWhereNearby(latitude, longitude, 5000, pageRequest).getContent();
+
+    return BaseResponse.success("success", list.stream().map(
+      location -> GetLocationsResponse.from(location.getName(), location.getCoordinate(), location.getStreetAddress())
+    ).toList(
+    ));
   }
 }
