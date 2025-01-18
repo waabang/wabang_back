@@ -11,14 +11,14 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Table(name = "users")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-public class User {
+public class User extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false)
+    @Column(name ="user_id")
     private Integer id;
 
     @CreatedDate
@@ -26,9 +26,7 @@ public class User {
     private LocalDateTime createdAt;
 
     private String name;
-    private String role;
+    @Column(name="user_point", nullable = false)
     private Integer point;
 
-    @OneToMany(mappedBy = "user")
-    private List<Record> records;
 }

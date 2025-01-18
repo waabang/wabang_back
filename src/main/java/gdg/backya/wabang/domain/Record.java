@@ -12,21 +12,15 @@ import java.time.LocalDateTime;
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@EntityListeners(AuditingEntityListener.class)
-public class Record {
+public class Record extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false)
     private Integer id;
 
-    @CreatedDate
-    @Column(name="created_at", updatable = false)
-    private LocalDateTime createdAt;
-
-    private String status;
-
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="user_id")
     private User userId;
 
+    @Column(name="mission_id", nullable = false)
     private Integer missionId;
 }

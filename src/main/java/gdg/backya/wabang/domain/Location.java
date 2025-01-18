@@ -11,31 +11,29 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "locations")
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Location {
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Location extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false)
+    @Column(name = "id", updatable = false)
     private Integer id;
 
-    @CreatedDate
-    @Column(name="created_at", updatable = false)
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
+    @Column(name = "latitude", nullable = false)
     private Float langtitude;
+
+    @Column(name = "longitude", nullable = false)
     private Float longitude;
 
+    @Column(name = "name", nullable = false)
     private String name;
-    private String tag;
-    private String street_address;
 
-    @OneToMany
+    @Column(name = "street_address", nullable = false)
+    private String streetAddress;
+
+    @OneToMany(mappedBy = "location")
     private List<Tag> tags;
 }
