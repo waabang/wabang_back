@@ -16,6 +16,6 @@ public class Reward extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
     @Column(name = "point", nullable = false)
-    private String point;
+    private Integer point;
 
 }
