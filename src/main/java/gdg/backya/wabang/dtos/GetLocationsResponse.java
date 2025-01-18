@@ -24,6 +24,7 @@ public class GetLocationsResponse {
   public static GetLocationsResponse from(Integer id, String name, Point point, String streetAddress) {
     return GetLocationsResponse.builder()
       .name(name)
+      .id(id)
       .latitude(point.getCoordinate().y)
       .longitude(point.getCoordinate().x)
       .streetAddress(streetAddress)
