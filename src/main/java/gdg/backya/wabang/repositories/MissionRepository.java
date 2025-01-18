@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface MissionRepository extends JpaRepository<Mission, Integer> {
   @Query(
-      value = "SELECT Mission FROM Mission m "
+      value = "SELECT m FROM Mission m "
           + "WHERE m.locationId = :missionId"
   )
   Optional<Mission> findByLocationId(Integer missionId);
