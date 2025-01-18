@@ -16,3 +16,9 @@ spring:
     init:
       platform: mysql
       mode: never
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+open-api:
+  base-url: http://apis.data.go.kr/B551011/KorService1/locationBasedList1?serviceKey=MAC%2BeYV6ZDoPTRgs4fWdX6kKr9pjuIAylBiwbf64ZhoYyVMIvj9O%2BFiZ7z2pUJVYfn4MZ6K%2FT9UBG0lYsBH73w%3D%3D&numOfRows=1&pageNo=1&_type=json&MobileOS=ETC&MobileApp=AppTest&arrange=A&radius=100&listYN=Y

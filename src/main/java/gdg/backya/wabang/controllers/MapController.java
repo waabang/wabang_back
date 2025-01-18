@@ -24,7 +24,7 @@ public class MapController {
       @RequestParam(value = "longitude") Float longitude
   ) {
     BaseResponse<List<GetLocationsResponse>> res = locationService.getLocationsNearby(latitude, longitude, page, size);
-    return ResponseEntity.ok(BaseResponse.success("success", res));
+    return ResponseEntity.ok(res);
   }
 
 

@@ -3,6 +3,7 @@ package gdg.backya.wabang.domain;
 import gdg.backya.wabang.domain.enums.MissionType;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
@@ -37,4 +38,13 @@ public class Mission extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private MissionType type;
 
+    @Builder
+    public Mission(Integer locationId, String title, String quiz, String headImageUrl, Integer rewardPoint, MissionType type) {
+      this.locationId = locationId;
+      this.title = title;
+        this.quiz = quiz;
+      this.headImageUrl = headImageUrl;
+      this.rewardPoint = rewardPoint;
+        this.type = type;
+    }
 }

@@ -6,4 +6,6 @@ import lombok.Getter;
 public enum MissionType {
     CAMERA,
     QUIZ
+
+
 }
