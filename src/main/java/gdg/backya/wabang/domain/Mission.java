@@ -37,5 +37,4 @@ public class Mission extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private MissionType type;
 
-
 }
