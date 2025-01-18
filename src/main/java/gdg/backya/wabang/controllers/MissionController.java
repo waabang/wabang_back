@@ -29,6 +29,12 @@ public class MissionController {
         return ResponseEntity.ok(res);
     }
 
+    @GetMapping("{missionId}/details")
+    public ResponseEntity<BaseResponse<GetDetailResponse>> getMissionDetails(@PathVariable Integer missionId) {
+        BaseResponse<GetDetailResponse> res = missionService.getMissionDetails(missionId);
+        return ResponseEntity.ok(res);
+    }
+
     @PostMapping
     public void createMission(@RequestBody MissionCreateRequest request) {
         missionService.save(request);

@@ -1,5 +1,6 @@
 package gdg.backya.wabang.services;
 
+import gdg.backya.wabang.controllers.GetDetailResponse;
 import gdg.backya.wabang.controllers.dtos.AnswerRequest;
 import gdg.backya.wabang.controllers.dtos.MissionCreateRequest;
 import gdg.backya.wabang.domain.*;
@@ -75,4 +76,9 @@ public class MissionService {
         return BaseResponse.success("success", ret);
     }
 
+    public BaseResponse<GetDetailResponse> getMissionDetails(Integer missionId) {
+        Mission mission = missionRepository.findById(missionId).
+            orElseThrow(IllegalArgumentException::new);
+        return BaseResponse.success("success", new GetDetailResponse(mission.getTitle()));
+    }
 }
