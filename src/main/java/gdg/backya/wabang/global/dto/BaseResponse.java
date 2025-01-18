@@ -8,14 +8,14 @@ import java.io.Serializable;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class BaseResponse implements Serializable {
+public class BaseResponse<T> implements Serializable {
 
-  private String status;
   private String message;
-  private Object payload;
+  private String code;
+  private T payload;
 
-  public BaseResponse(String status, String message, Object payload) {
-    this.status = status;
+  public BaseResponse(String code, String message, T payload) {
+    this.code = code;
     this.message = message;
     this.payload = payload;
   }
@@ -31,7 +31,7 @@ public class BaseResponse implements Serializable {
   @Override
   public String toString() {
     return "BaseResponse{" +
-      "status='" + status + '\'' +
+      "status='" + code + '\'' +
       ", message='" + message + '\'' +
       '}';
   }
