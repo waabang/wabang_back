@@ -22,7 +22,7 @@ public class LocationService {
     List<Location> list= locationRepository.findWhereNearby(latitude, longitude, 5000, pageRequest).getContent();
 
     return BaseResponse.success("success", list.stream().map(
-      location -> GetLocationsResponse.from(location.getName(), location.getCoordinate(), location.getStreetAddress())
+      location -> GetLocationsResponse.from(location.getId(), location.getName(), location.getCoordinate(), location.getStreetAddress())
     ).toList(
     ));
   }

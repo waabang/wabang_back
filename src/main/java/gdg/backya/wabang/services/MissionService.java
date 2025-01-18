@@ -2,10 +2,8 @@ package gdg.backya.wabang.services;
 
 import gdg.backya.wabang.controllers.dtos.AnswerRequest;
 import gdg.backya.wabang.controllers.dtos.MissionCreateRequest;
-import gdg.backya.wabang.domain.Location;
-import gdg.backya.wabang.domain.Mission;
+import gdg.backya.wabang.domain.*;
 import gdg.backya.wabang.domain.Record;
-import gdg.backya.wabang.domain.RecordRepository;
 import gdg.backya.wabang.domain.enums.MissionType;
 import gdg.backya.wabang.dtos.GetMissionResponse;
 import gdg.backya.wabang.external.FileSender;
@@ -13,6 +11,7 @@ import gdg.backya.wabang.external.OpenAPIClient;
 import gdg.backya.wabang.global.dto.BaseResponse;
 import gdg.backya.wabang.repositories.LocationRepository;
 import gdg.backya.wabang.repositories.MissionRepository;
+import gdg.backya.wabang.repositories.UserRepository;
 import gdg.backya.wabang.services.dtos.AnswerResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -28,16 +27,13 @@ public class MissionService {
     private final LocationRepository locationRepository;
     private final FileSender fileSender;
     private final RecordRepository recordRepository;
+    private final UserRepository userRepository;
 
     public BaseResponse<GetMissionResponse> getMission(Integer missionId) {
 
-        Mission mission = missionRepository.findById(missionId).orElseThrow(IllegalArgumentException::new);
+        Mission mission = missionRepository.findByLocationId(missionId).orElseThrow(IllegalArgumentException::new);
         Location location = locationRepository.findById(mission.getLocationId()).orElseThrow(IllegalArgumentException::new);
-
-
-
-        GetMissionResponse res = GetMissionResponse.from(missionId,mission.getType().toString(),mission.getHeadImageUrl() , mission.getTitle());
-
+        GetMissionResponse res = GetMissionResponse.from(missionId,mission.getType().toString(),mission.getHeadImageUrl() , location.getName());
         return BaseResponse.success("success",res);
     }
 
@@ -70,6 +66,8 @@ public class MissionService {
             answer.getImage(),
             "answer",
             "1");
+        User user = userRepository.findById(1).orElseThrow(IllegalArgumentException::new);
+        user.setPoint(user.getPoint() + mission.getRewardPoint());
         Record record = recordRepository.findByUserIdAndRecordId(1, missionId)
             .orElse(new Record(1, missionId, false));
         record.setSuccess(ret.getSuccess());

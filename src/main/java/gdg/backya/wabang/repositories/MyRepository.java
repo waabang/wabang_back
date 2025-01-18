@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface MyRepository extends JpaRepository<User, Long> {
 
   @Query(
-      "select new gdg.backya.wabang.controllers.JoinedInfo(l.name, m.headImageUrl, l.streetAddress, r.success) "
+      "select new gdg.backya.wabang.services.dtos.JoinedInfo(l.name, m.headImageUrl, l.streetAddress, r.success) "
       + "from Mission m "
       + "join Location l on m.locationId = l.id "
       + "join Record r on m.id = r.missionId "
