@@ -1,4 +1,4 @@
-package gdg.backya.wabang.services;
+package gdg.backya.wabang.services.dtos;
 
 import lombok.Getter;
 

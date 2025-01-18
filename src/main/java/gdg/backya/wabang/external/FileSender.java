@@ -1,6 +1,6 @@
 package gdg.backya.wabang.external;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import gdg.backya.wabang.services.AnswerResponse;
+import gdg.backya.wabang.services.dtos.AnswerResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.stereotype.Component;

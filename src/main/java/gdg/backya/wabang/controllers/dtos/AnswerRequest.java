@@ -1,4 +1,4 @@
-package gdg.backya.wabang.controllers;
+package gdg.backya.wabang.controllers.dtos;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

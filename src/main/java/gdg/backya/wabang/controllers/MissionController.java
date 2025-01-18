@@ -1,9 +1,11 @@
 package gdg.backya.wabang.controllers;
 
+import gdg.backya.wabang.controllers.dtos.AnswerRequest;
+import gdg.backya.wabang.controllers.dtos.MissionCreateRequest;
 import gdg.backya.wabang.dtos.GetMissionResponse;
 import gdg.backya.wabang.external.OpenAPIClient;
 import gdg.backya.wabang.global.dto.BaseResponse;
-import gdg.backya.wabang.services.AnswerResponse;
+import gdg.backya.wabang.services.dtos.AnswerResponse;
 import gdg.backya.wabang.services.MissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

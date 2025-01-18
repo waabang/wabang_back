@@ -1,6 +1,5 @@
-package gdg.backya.wabang.controllers;
+package gdg.backya.wabang.controllers.dtos;
 
-import gdg.backya.wabang.domain.enums.MissionType;
 import lombok.Getter;
 
 @Getter
